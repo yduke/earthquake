@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>一周地震报告 7天内地震报告</title>
+<meta name="description" content="一周内超过4.5级的地震"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="theme-color" content="#ffffff" />
+<link rel="icon" href="./img/icon-192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="./img/icon-180.png" />
+<meta name="msapplication-TileImage" content="./img/icon-270.png" />
+<style>
+.earthquake{width:800px;margin:0 auto}
+.bold{font-weight:700}
+.alert{color:red}
+.warning{color:orange}
+table tr:nth-child(2n){background-color:#8e8e8e1a}
+footer,h1{text-align:center}
+i.loading{position:absolute;background-image:url(img/loading.svg);background-size:40px 40px;background-repeat:no-repeat;width:40px;height:40px;left:calc(50% - 40px)}
+.tdright{text-align:right}
+@media screen and (max-width:600px){.earthquake{width:100%}
+table{font-size:small;width:100%}
+table td{white-space:break-spaces;overflow:hidden}
+table th{padding:0}
+}
+@media (prefers-color-scheme:dark){body{color:#8c909a;background-color:#1a1a1c}
+.h3,h1,h2,h3,h4{color:#999}
+}
+</style>
+</head>
+<body>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+<script src="./scripts/json2html.js" id="json2html"></script>
+<script src="./scripts/scripts.js" id="json2html"></script>
+<h1>最近7天内地震 Earthquakes in 7days</h1>
+<div class="earthquake">
+	<p>本页面仅收录最近七天之内震级大于4.5级的地震。</p>
+	<p>This page shows Earthquakes greater than 4.5 maginitude only in recent 7 days.</p>
+	<p>最近7天之内全球发生了<span id="amount_of_earthquake" class="bold"></span>起大于4.5级的地震。</p>
+	<p>There have been <span id="amount_of_earthquakes" class="bold"></span> earthquakes greater than 4.5 magnitude worldwide in latest 7days.</p>
+	<p><span class="warning">橙色</span>表示震级大于5 <span class="warning">Orange</span> means maginitude greater than 5.</p>
+	<p><span class="alert">红色</span>表示震级大于6 <span class="alert">Red</span> means maginitude greater than 6 .</p>
+	<p>“深度”的计量单位为千米。</p>
+	<p>The unit of measurement for "Depth" is kilometer(s). </p>
+	<p>最后更新于<span id="updates"></span></p>
+	<p>Last Updated on <span id="updatess"></span></p>
+	<div id="earthquake_container">
+	<table id="earthquake" width="800px" cellpadding="2" cellspacing="1">
+		<tbody>
+		<tr>
+		<th>时间<br>Time</th>
+		<th>地点<br>Place</th>
+		<th>震级<br>Level</th>
+		<th>深度<br>Depth</th>
+		</tr>
+		</tbody>
+	</table>
+	<i class="loading"></i>
+	</div>
+</div>
+<footer>
+<br/><br/>Made by <a href="https://www.dukeyin.com">Duke Yin</a>, 2021
+</footer>
+</body>
+</html>
