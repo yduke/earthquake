@@ -1,5 +1,13 @@
 (function($) {
 	'use strict';
+		$(function () {
+		var userLang = navigator.language || navigator.userLanguage;
+		var currentLang;
+		if(userLang == 'zh-CN' || userLang == 'zh-TW'){
+					currentLang = 'cn';
+				}else{
+					currentLang = 'en';
+				};
 	$(document).ready(function() {
 		function convertTimestamp(timestamp) {
 			var d = new Date(timestamp * 1000),
@@ -20,7 +28,11 @@
 			} else if (hh == 0) {
 				h = 12
 			}
+			if(currentLang== 'cn'){
 			time = mm + '月' + dd + ' ' + hh + ':' + min;
+			}else{
+			time = mm + '-' + dd + ' ' + hh + ':' + min;
+			}
 			return time
 		}
 		if ($('#earthquake').length > 0) {
@@ -91,4 +103,15 @@
 			})
 		}
 	})
+	
+
+		console.log(currentLang);
+        $('#multlang').multilang({
+			defaultLang:currentLang,
+            languages:{
+            'cn':{'name':'Chinese','nativeName':'中文'},
+            'en':{'name':'English','nativeName':'English'}
+            }
+        });
+    });
 })(jQuery);
