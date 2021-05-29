@@ -51,8 +51,8 @@
 					}
 				}
 //		console.log(str);
-		var appid = '20180903000202314';
-		var key = 'ema3uNOkIFp2CFGlA6i_';
+		var appid = '20180903000202314';       //CHANGE THIS TO YOUR OWN PLEASE
+		var key = 'ema3uNOkIFp2CFGlA6i_';	   //CHANGE THIS TO YOUR OWN PLEASE
 		var salt = (new Date).getTime();
 		var query = str;
 		var from = 'en';

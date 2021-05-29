@@ -1,12 +1,29 @@
 # earthquake
-Earthquake more than M4.5 in 7days.
 
-This is a html page shows recent earthquake greater than M4.5 worldwide in real time.
+## 7天内4.5级以上地震
 
-Thanks to https://earthquake.usgs.gov/ providing earthquake API for this tool.
+这个简单的 html 页面记录了 7 天内世界范围内超过 M4.5 的地震。
 
-You can simply download all files and put them to your server to get this page run, this project is an HTML & JacaScript web page, so only web file capbility is required for your server.
+数据来自 https://earthquake.usgs.gov/
 
-The data in page updates every minutes, if there is an M4.5+ earthquake taken place, it will be shown on the top of the table.
+您只需下载所有文件并将它们放在服务器上即可运行。这个项目是简单的 HTML 和 JacaScript 网页，所以你的服务器只需要 web 文件功能即可运行。
+
+地震数据每分钟更新一次。 如果发生 M4.5+ 地震，它将会记录在首页的表格顶部。
+
+“百度翻译”API用于将地名翻译成中文，所以如果你想使用此项目，记得把scripts.js文件中的百度翻译appid和key改成你自己的，否则很可能导致宕机。
+
+演示：https://www.dukeyin.com/earthquake/
+
+
+## Earthquakes M4.5+ in 7days
+This simple html page logs earthquakes exceeding M4.5 world wide within 7 days.
+
+Datas from https://earthquake.usgs.gov/
+
+You can simply download all files and put them on your server to run this page. This project is an HTML and JacaScript web page, so your server only needs web file capabilities.
+
+The earthquake data updats every minute. If an M4.5+ earthquake occurs, it will be logged at the top of the table in frontpage.
+
+"Baidu Translate" api for translating place names to Chinese, so if you want to use these codes, remeber to change the baidu translate appid and key in scripts.js to your own, or there will most likely be a down time for yours and others.
 
 DEMO: https://www.dukeyin.com/earthquake/
