@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>一周地震报告 7天内地震报告 Earthquakes in 7days</title>
 <meta name="description" content="一周内超过4.5级的地震 Earthquakes greater than 4.5 in 7days"/>
-<meta name="keywords" content="地震,earthquake,中国地震,地震数据,earthquake data" />
+<meta name="keywords" content="地震,earthquake,中国地震,地震数据,earthquake data,earthquake log" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -21,7 +21,7 @@ a,a:active,a:link,a:visited{color:#48608e;text-decoration:none}
 .warning{color:#f19400}
 table tr:nth-child(2n){background-color:#8e8e8e1a}
 footer,h1,ul#multilangMenu{text-align:center}
-i.loading{position:absolute;background-image:url(img/loading.svg);background-size:40px 40px;background-repeat:no-repeat;width:40px;height:40px;left:calc(50% - 40px)}
+i.loading{position:absolute;background-image:url(img/loading.svg);background-size:40px 40px;background-repeat:no-repeat;width:40px;height:40px;left:calc(50% - 20px)}
 .tdright{text-align:right}
 ul#multilangMenu li{list-style-type:none;display:inline-block;padding-right:20px}
 @media screen and (max-width:600px){.earthquake{width:100%}
@@ -34,38 +34,36 @@ table th{padding:0}
 .alert{color:#fe6553}
 .warning{color:#f1b70f}
 }
-
 </style>
 </head>
 <body>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
-<script src="./scripts/json2html.js" id="json2html"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script> -->
+<script src="./scripts/jquery.js"></script>
+<script src="./scripts/md5.js" id="json2html"></script>
 <script src="./scripts/scripts.js" id="json2html"></script>
 <script src="./scripts/jquery.multilang.min.js" id="multilang"></script>
 <div id="multlang">
 <h1 class="multilang" lang="cn">7天内4.5级以上地震</h1>
 <h1 class="multilang" lang="en">Earthquakes M4.5+ in 7days</h1>
 <div class="earthquake">
-<p class="multilang" lang="cn">本页面仅收录最近七天之内震级大于4.5级的地震。</p>
-	<p class="multilang" lang="en">This page shows Earthquakes greater than 4.5 maginitude in recent 7days.</p>
+<p class="multilang" lang="cn">本页面记录最近七天之内全球震级大于4.5级的地震。</p>
+	<p class="multilang" lang="en">This page shows Earthquakes greater than 4.5 maginitude worldwide in recent 7days.</p>
 	<p class="multilang" lang="cn">最近7天之内全球发生了<span id="amount_of_earthquake" class="bold alert"></span>起大于4.5级的地震。</p>
-	<p class="multilang" lang="en">There have been <span id="amount_of_earthquakes" class="bold alert"></span> earthquakes greater than 4.5 magnitude worldwide in recent 7days.</p>
+	<p class="multilang" lang="en">There have been <span id="amount_of_earthquakes" class="bold alert"></span> earthquakes greater than 4.5 maginitude worldwide in recent 7days.</p>
 	<p class="multilang" lang="cn"><span class="warning">橙色</span>表示震级大于5 </p>
-	<p class="multilang" lang="en"><span class="warning">Orange</span> means maginitude greater than 5.</p>
+	<p class="multilang" lang="en"><span class="warning">Orange</span> means the maginitude greater than 5.</p>
 	<p class="multilang" lang="cn"><span class="alert">红色</span>表示震级大于6。</p>
-	<p class="multilang" lang="en"><span class="alert">Red</span> means maginitude greater than 6.</p>
-	<p class="multilang" lang="cn">“深度”的计量单位为千米。</p>
-	<p class="multilang" lang="en">The unit of measurement for "Depth" is kilometer(s). </p>
-	<p class="multilang" lang="cn">最后更新于 <span id="updates"></span></p>
-	<p class="multilang" lang="en">Last Updated on <span id="updatess"></span></p>
+	<p class="multilang" lang="en"><span class="alert">Red</span> means the maginitude greater than 6.</p>
+	<p class="multilang" lang="cn">最近一次记录 <span id="updates"></span></p>
+	<p class="multilang" lang="en">Last recorded on <span id="updatess"></span></p>
 	<div id="earthquake_container">
 	<table id="earthquake" width="800px" cellpadding="2" cellspacing="1">
-		<tbody>
+		<tbody id="eqtable">
 		<tr>
-		<th><span class="multilang" lang="cn">时间</span><span class="multilang" lang="en">Time</span></th>
-		<th><span class="multilang" lang="cn">地点</span><span class="multilang" lang="en">Place</span></th>
-		<th><span class="multilang" lang="cn">震级</span><span class="multilang" lang="en">Level</span></th>
-		<th><span class="multilang" lang="cn">深度</span><span class="multilang" lang="en">Depth</span></th>
+		<th><span class="multilang" lang="cn">时</span><span class="multilang" lang="en">Time</span></th>
+		<th><span class="multilang" lang="cn">地</span><span class="multilang" lang="en">Place</span></th>
+		<th><span class="multilang" lang="cn">级</span><span class="multilang" lang="en">Level</span></th>
+		<th><span class="multilang" lang="cn">深</span><span class="multilang" lang="en">Depth</span></th>
 		</tr>
 		</tbody>
 	</table>
@@ -74,8 +72,8 @@ table th{padding:0}
 </div>
 <footer>
 <br/>
-<p class="multilang" lang="en">Made by <a href="https://www.dukeyin.com" target="_blank">Duke Yin</a> | <a href="https://earthquake.usgs.gov" target="_blank">Data Source</a> | Source Code:<a href="https://github.com/yduke/earthquake" target="_blank">Github</a></p>
-<p class="multilang" lang="cn">由<a href="https://www.dukeyin.com">Duke Yin</a>制作 | <a href="https://earthquake.usgs.gov" target="_blank">数据来源</a> | 源代码:<a href="https://github.com/yduke/earthquake" target="_blank">Github</a></p>
+<p class="multilang" lang="en">Made by <a href="https://www.dukeyin.com" target="_blank">Duke Yin</a> | <a href="https://earthquake.usgs.gov" target="_blank">Data Source</a> | <a href="https://github.com/yduke/earthquake" target="_blank">Source Code</a></p>
+<p class="multilang" lang="cn">由<a href="https://www.dukeyin.com">Duke Yin</a>制作 | <a href="https://earthquake.usgs.gov" target="_blank">数据来源</a> | <a href="https://github.com/yduke/earthquake" target="_blank">源代码</a></p>
 </footer>
 </body>
 </div>

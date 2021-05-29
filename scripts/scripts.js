@@ -1,16 +1,9 @@
 (function($) {
 	'use strict';
 		$(function () {
-		var userLang = navigator.language || navigator.userLanguage;
-		var currentLang;
-		if(userLang == 'zh-CN' || userLang == 'zh-TW'){
-					currentLang = 'cn';
-				}else{
-					currentLang = 'en';
-				};
-	$(document).ready(function() {
+//convert time
 		function convertTimestamp(timestamp) {
-			var d = new Date(timestamp * 1000),
+			var d = new Date(timestamp),
 				yyyy = d.getFullYear(),
 				mm = ('0' + (d.getMonth() + 1)).slice(-2),
 				dd = ('0' + d.getDate()).slice(-2),
@@ -34,78 +27,96 @@
 			time = mm + '-' + dd + ' ' + hh + ':' + min;
 			}
 			return time
-		}
-		if ($('#earthquake').length > 0) {
-			let url = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson';
-			$.getJSON(url, function(data, status) {
-				$("#amount_of_earthquake,#amount_of_earthquakes").html(data.features.length);
-				$("#updates,#updatess").html(convertTimestamp(data.features[0].properties.updated / 1000));
-				var transform = {
-					"<>": "tr",
-					"html": [{
-						"<>": "td",
-						"class": function() {
-							var mag = this.properties.mag;
-							if (mag > 5 && mag <= 6) {
-								return "eqk_num warning"
-							} else if (mag > 6) {
-								return "eqk_num alert bold"
-							}
-						},
-						"text": function() {
-							return (convertTimestamp(this.properties.time / 1000))
-						}
-					}, {
-						"<>": "td",
-						"class": function() {
-							var mag = this.properties.mag;
-							if (mag > 5 && mag <= 6) {
-								return "eqk_num warning"
-							} else if (mag > 6) {
-								return "eqk_num alert bold"
-							}
-						},
-						"text": "${properties.place}"
-					}, {
-						"<>": "td",
-						"class": function() {
-							var mag = this.properties.mag;
-							if (mag > 5 && mag <= 6) {
-								return "eqk_num warning"
-							} else if (mag > 6) {
-								return "eqk_num alert bold"
-							}
-						},
-						"text": "M" + "${properties.mag}"
-					}, {
-						"<>": "td",
-						"class": function() {
-							var mag = this.properties.mag;
-							if (mag > 5 && mag <= 6) {
-								return "eqk_num warning tdright"
-							} else if (mag > 6) {
-								return "eqk_num alert bold tdright"
-							} else {
-								return "tdright"
-							}
-						},
-						"text": function() {
-							var depth = this.geometry.coordinates[2];
-							return (depth.toFixed(2))
-						}
-					}, ]
-				};
-				$('#earthquake').json2html(data.features, transform);
-				$(".loading").fadeOut("slow")
-			}).fail(function(status) {
-				$(".loading").fadeOut("slow");
-				$("#earthquake").html(data)
-			})
-		}
-	})
-	
+		}	
 
-		console.log(currentLang);
+//Detect Browser language
+		var userLang = navigator.language || navigator.userLanguage;
+		var currentLang;
+		if(userLang == 'zh-CN' || userLang == 'zh-TW'){
+					currentLang = 'cn';
+				}else{
+					currentLang = 'en';
+				};
+				
+	$(document).ready(function() {
+//get eq json data	
+		let urla = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson';
+		$.getJSON(urla,callback);
+		function callback(json) {
+//		console.log(json);
+			var str='';
+				for(var i=0;i<json.features.length;i++){
+					if(json.features[i].properties.place != ''){
+						 str += json.features[i].properties.place +'\n';
+					}
+				}
+//		console.log(str);
+		var appid = '20180903000202314';
+		var key = 'ema3uNOkIFp2CFGlA6i_';
+		var salt = (new Date).getTime();
+		var query = str;
+		var from = 'en';
+		var to = 'zh';
+		var str1 = appid + query + salt +key;
+		var sign = MD5(str1);
+		$.ajax({
+			url: 'https://api.fanyi.baidu.com/api/trans/vip/translate',
+			type: 'get',
+			dataType: 'jsonp',
+			async: false,
+			data: {
+				q: query,
+				appid: appid,
+				salt: salt,
+				from: from,
+				to: to,
+				sign: sign
+			},
+			success: function (data) {
+				var obj = $.extend(json, data); 
+//				console.log(obj);
+				$("#amount_of_earthquake,#amount_of_earthquakes").html(obj.features.length);
+				$("#updates,#updatess").html(convertTimestamp(obj.features[0].properties.updated));
+
+     var table = "";
+	 var hideen='';
+	 var hidecn='';
+	 if(currentLang == 'cn'){
+			 hideen = " style='display:none'";
+			 hidecn = "";
+		 }else{
+			hidecn = " style='display:none'";
+			hideen = "";
+		 }
+	 for(var p=0; p<obj.features.length;p++){
+		 var classs;
+		 var mag=obj.features[p].properties.mag;
+		 if (mag > 5 && mag <= 6){
+			classs=" class='warning bold'"
+		 }else if(mag > 6){
+			classs=" class='alert bold'"
+		 }else{classs=''}
+		 table += "<tr"+
+		 classs+
+		 "><td>"+convertTimestamp(json.features[p].properties.time)+
+		 "</td><td><div class='multilang' lang='cn'"+hidecn+">"+
+		 obj.trans_result[p].dst+
+		 "</div><div class='multilang' lang='en'"+hideen+">"+
+		 json.features[p].properties.place+
+		 "</div></td><td>M"+
+		 json.features[p].properties.mag+
+		 "</td><td>"+
+		 json.features[p].geometry.coordinates[2]+
+		 "km</td></tr>";
+	 }
+
+$('#eqtable').append(table);
+				$(".loading").fadeOut("slow")
+			} 
+		});
+		};
+
+	})
         $('#multlang').multilang({
 			defaultLang:currentLang,
             languages:{
