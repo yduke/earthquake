@@ -29,16 +29,25 @@ table{font-size:small;width:100%}
 table td{white-space:break-spaces;overflow:hidden}
 table th{padding:0}
 }
+div#addhomescreen{margin:0 0 0 -8px;padding:5px 0;position:fixed;bottom:0;background:#fff;width:100%;box-shadow:7px 3px 11px 2px #717171}
+.ahsicon{float:left;margin:0 10px}
+.ahsicon img{width:40px;height:40px}
+.ahsmesg{margin:0 62px}
+.ahsmesg p{padding:0;margin:0}
+.ahscls{position:absolute;right:20px;bottom:24px}
+.ahscls button{border:0;font-size:20px}
 @media (prefers-color-scheme:dark){body{color:#8c909a;background-color:#1a1a1c}
 .h3,h1,h2,h3,h4{color:#999}
 .alert{color:#fe6553}
 .warning{color:#f1b70f}
 }
+
 </style>
 </head>
 <body>
 <!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script> -->
 <script src="./scripts/jquery.js"></script>
+<script src="./scripts/jquery.cookie.js"></script>
 <script src="./scripts/md5.js" id="json2html"></script>
 <script src="./scripts/scripts.js" id="json2html"></script>
 <script src="./scripts/jquery.multilang.min.js" id="multilang"></script>
@@ -69,6 +78,14 @@ table th{padding:0}
 	</table>
 	<i class="loading"></i>
 	</div>
+</div>
+<div id="addhomescreen">
+<div class="ahsicon"><img src="./img/icon-180.png"></div>
+<div class="ahsmesg">
+<p class="multilang" lang="en"><small>This app can be installed in your home screen. Tap<svg t="1622350367270" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3017" width="20" height="20"><path d="M896 320l0 304L896 832l0 64c0 35.392-28.608 64-64 64L256 960c-35.392 0-64-28.608-64-64l0-64 0-144L192 320l4.8 0L256 320l99.328 0c72.832 0 72.832 64 0 64L256 384l0 304L256 896l64 0 448 0 64 0 0-64L832 624 832 384l-94.976 0c-72.832 0-72.832-64 0-64L832 320l63.488 0L896 320zM694.4 206.656 564.544 73.6C564.416 73.472 564.224 73.408 564.032 73.344 561.216 70.464 554.496 68.096 550.72 66.496 547.328 65.152 550.144 64.64 546.624 64.384 545.856 64.384 545.28 64 544.576 64 544.064 64 543.68 64.256 543.168 64.256c-3.84 0.192-5.76 0.896-9.344 2.24C530.56 67.904 527.808 70.016 525.184 72.256 524.544 72.768 523.712 73.024 523.136 73.6L390.208 206.656c-12.864 12.8-6.976 33.6 5.888 46.4 12.8 12.864 33.6 12.864 46.464 0l70.976-76.864 0.064 429.696c0 18.752 12.8 33.984 30.912 33.92 18.112 0.064 29.696-15.168 29.696-33.984L574.208 176.128l79.552 76.864c12.864 12.864 33.6 12.864 46.528 0 6.4-6.4 3.776-14.72 3.776-23.168S700.736 212.992 694.4 206.656z" p-id="3018"></path></svg> then "Add to home screen".</small></p>
+<p class="multilang" lang="cn"><small>此网页可作为APP使用。 轻触<svg t="1622350367270" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3017" width="20" height="20"><path d="M896 320l0 304L896 832l0 64c0 35.392-28.608 64-64 64L256 960c-35.392 0-64-28.608-64-64l0-64 0-144L192 320l4.8 0L256 320l99.328 0c72.832 0 72.832 64 0 64L256 384l0 304L256 896l64 0 448 0 64 0 0-64L832 624 832 384l-94.976 0c-72.832 0-72.832-64 0-64L832 320l63.488 0L896 320zM694.4 206.656 564.544 73.6C564.416 73.472 564.224 73.408 564.032 73.344 561.216 70.464 554.496 68.096 550.72 66.496 547.328 65.152 550.144 64.64 546.624 64.384 545.856 64.384 545.28 64 544.576 64 544.064 64 543.68 64.256 543.168 64.256c-3.84 0.192-5.76 0.896-9.344 2.24C530.56 67.904 527.808 70.016 525.184 72.256 524.544 72.768 523.712 73.024 523.136 73.6L390.208 206.656c-12.864 12.8-6.976 33.6 5.888 46.4 12.8 12.864 33.6 12.864 46.464 0l70.976-76.864 0.064 429.696c0 18.752 12.8 33.984 30.912 33.92 18.112 0.064 29.696-15.168 29.696-33.984L574.208 176.128l79.552 76.864c12.864 12.864 33.6 12.864 46.528 0 6.4-6.4 3.776-14.72 3.776-23.168S700.736 212.992 694.4 206.656z" p-id="3018"></path></svg> 然后“添加到主屏幕”。</small></p>
+</div>
+<div class="ahscls"><button>X</button></div>
 </div>
 <footer>
 <br/>
