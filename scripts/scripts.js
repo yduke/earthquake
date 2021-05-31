@@ -99,7 +99,7 @@
 				var str1 = appid + query + salt + key;
 				var sign = MD5(str1);
 				var host = document.domain;
-				if( host != 'localhost' && host != 'dukeyin.com' && appid =='20180903000202314' ){
+				if( host != 'localhost' && host != 'dukeyin.com' && host != 'www.dukeyin.com' && appid =='20180903000202314' ){
 					$("footer").append('<p><small style="color:red">请将scripts.js中的<a href="https://api.fanyi.baidu.com/api/trans/product/desktop">百度翻译API</a>密钥替换为您自己的。当API过度请求，就会造成无法使用。修改后本信息会自动消失。<br>Please replace <a href="https://api.fanyi.baidu.com/api/trans/product/desktop">translation API</a> key in scripts.js to your own. When the API is over-requested, this service will not work anymore. This message will be disappear automatically after key changing.</small></p>')
 				}
 				$.ajax({
