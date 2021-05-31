@@ -151,7 +151,15 @@
 					path: '/'
 				});
 			});
-		})
+			
+			PullToRefresh.init({
+				mainElement: '#earthquake_container',
+				instructionsPullToRefresh: '下拉刷新 Pull to refresh',
+				instructionsReleaseToRefresh:'释放刷新 Release to refresh',
+				instructionsRefreshing:'正在刷新 Refreshing',
+//				onRefresh: function() {  window.location.reload();}
+			});
+		}) //documentReadyEnd
 //Multlang
 		$('#multlang').multilang({
 			defaultLang: currentLang,
