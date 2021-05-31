@@ -29,6 +29,10 @@ table{font-size:small;width:100%}
 table td{white-space:break-spaces;overflow:hidden}
 table th{padding:0}
 }
+.tsunami{background: radial-gradient(circle at 10px -7px,transparent 8px,#58bffb 8px, #58bffb 9px, transparent 9px) repeat-x,radial-gradient(circle at 10px 27px, transparent 8px, #58bffb 8px, #58bffb 9px, transparent 9px) repeat-x;background-size:20px 20px;background-position: -10px calc(100% + 16px), 0 calc(100% - 4px);animation: waveFlow 1s infinite linear;
+}
+@keyframes waveFlow {from {background-position-x:-10px,0}to {background-position-x:-30px,-20px}
+}
 div#addhomescreen{margin:0 0 0 -8px;padding:5px 0;position:fixed;bottom:0;background:#fff;width:100%;box-shadow:7px 3px 11px 2px #717171}
 .ahsicon{float:left;margin:0 10px}
 .ahsicon img{width:40px;height:40px}
@@ -65,9 +69,11 @@ svg.icon {fill:#8c909a}
 	<p class="multilang" lang="cn">最近7天之内全球发生了<span id="amount_of_earthquake" class="bold alert"></span>起大于4.5级的地震。</p>
 	<p class="multilang" lang="en">There have been <span id="amount_of_earthquakes" class="bold alert"></span> earthquakes greater than 4.5 maginitude worldwide in recent 7days.</p>
 	<p class="multilang" lang="cn"><span class="warning">橙色</span>表示震级大于5 </p>
-	<p class="multilang" lang="en"><span class="warning">Orange</span> means the maginitude greater than 5.</p>
+	<p class="multilang" lang="en"><span class="warning">Orange</span> indicates the maginitude greater than 5.</p>
 	<p class="multilang" lang="cn"><span class="alert">红色</span>表示震级大于6。</p>
-	<p class="multilang" lang="en"><span class="alert">Red</span> means the maginitude greater than 6.</p>
+	<p class="multilang" lang="en"><span class="alert">Red</span> indicates the maginitude greater than 6.</p>
+	<p class="multilang" lang="cn"><span class="tsunami">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>表示可能引发海啸。</p>
+	<p class="multilang" lang="en"><span class="tsunami">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> indicates that a tsunami may be triggered.</p>
 	<p class="multilang" lang="cn">最近一次地震记录于 <span id="updates"></span></p>
 	<p class="multilang" lang="en">Last earthquake recorded on <span id="updatess"></span></p>
 	<div id="earthquake_container">

@@ -115,14 +115,18 @@
 						for (var p = 0; p < obj.features.length; p++) {
 							var classs;
 							var mag = obj.features[p].properties.mag;
+							var tsunami = obj.features[p].properties.tsunami;
 							if (mag > 5 && mag <= 6) {
-								classs = " class='warning bold'"
+								classs = "warning bold"
 							} else if (mag > 6) {
-								classs = " class='alert bold'"
+								classs = "alert bold"
 							} else {
 								classs = ''
 							}
-							table += "<tr" + classs + "><td>" + convertTimestamp(json.features[p].properties.time) + "</td><td><div class='multilang' lang='cn'" + hidecn + ">" + obj.trans_result[p].dst + "</div><div class='multilang' lang='en'" + hideen + ">" + json.features[p].properties.place + "</div></td><td>M" + json.features[p].properties.mag + "</td><td>" + json.features[p].geometry.coordinates[2] + "km</td></tr>";
+							if(tsunami == 1 ){
+								classs += " tsunami"
+							}
+							table += "<tr class='" + classs + "'><td>" + convertTimestamp(json.features[p].properties.time) + "</td><td><div class='multilang' lang='cn'" + hidecn + ">" + obj.trans_result[p].dst + "</div><div class='multilang' lang='en'" + hideen + ">" + json.features[p].properties.place + "</div></td><td>M" + json.features[p].properties.mag + "</td><td>" + json.features[p].geometry.coordinates[2] + "km</td></tr>";
 						}
 
 						$('#eqtable').append(table);
