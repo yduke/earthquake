@@ -1,6 +1,28 @@
 (function($) {
 	'use strict';
 	$(function() {
+//Detect Browser language
+		var userLang = navigator.language || navigator.userLanguage;
+		var currentLang;
+		if (userLang == 'zh-CN' || userLang == 'zh-TW') {
+			currentLang = 'cn';
+		} else {
+			currentLang = 'en';
+		};
+//Multlang
+		$('#multlang').multilang({
+			defaultLang: currentLang,
+			languages: {
+				'cn': {
+					'name': 'Chinese',
+					'nativeName': '中文'
+				},
+				'en': {
+					'name': 'English',
+					'nativeName': 'English'
+				}
+			}
+		});
 
 //convert time
 		function convertTimestamp(timestamp) {
@@ -52,14 +74,7 @@
 			return isMobile.any();
 		}
 
-//Detect Browser language
-		var userLang = navigator.language || navigator.userLanguage;
-		var currentLang;
-		if (userLang == 'zh-CN' || userLang == 'zh-TW') {
-			currentLang = 'cn';
-		} else {
-			currentLang = 'en';
-		};
+
 
 		$(document).ready(function() {
 //get eq json data	
@@ -75,14 +90,18 @@
 					}
 				}
 //				console.log(str);
-				var appid = '20180903000202314'; //CHANGE THIS TO YOUR OWN PLEASE
-				var key = 'ema3uNOkIFp2CFGlA6i_'; //CHANGE THIS TO YOUR OWN PLEASE
+				var appid = '20180903000202314';  //CHANGE THIS TO YOUR OWN PLEASE 请将此处修改为您自己的baidu翻译appid
+				var key = 'ema3uNOkIFp2CFGlA6i_'; //CHANGE THIS TO YOUR OWN PLEASE 请将此处修改为您自己的baidu翻译key
 				var salt = (new Date).getTime();
 				var query = str;
 				var from = 'en';
 				var to = 'zh';
 				var str1 = appid + query + salt + key;
 				var sign = MD5(str1);
+				var host = document.domain;
+				if( host != 'localhost' && host != 'dukeyin.com' && appid =='20180903000202314' ){
+					$("footer").append('<p><small style="color:red">请将scripts.js中的<a href="https://api.fanyi.baidu.com/api/trans/product/desktop">百度翻译API</a>密钥替换为您自己的。当API过度请求，就会造成无法使用。修改后本信息会自动消失。<br>Please replace <a href="https://api.fanyi.baidu.com/api/trans/product/desktop">translation API</a> key in scripts.js to your own. When the API is over-requested, this service will not work anymore. This message will be disappear automatically after key changing.</small></p>')
+				}
 				$.ajax({
 					url: 'https://api.fanyi.baidu.com/api/trans/vip/translate',
 					type: 'get',
@@ -164,20 +183,7 @@
 //				onRefresh: function() {  window.location.reload();}
 			});
 		}) //documentReadyEnd
-//Multlang
-		$('#multlang').multilang({
-			defaultLang: currentLang,
-			languages: {
-				'cn': {
-					'name': 'Chinese',
-					'nativeName': '中文'
-				},
-				'en': {
-					'name': 'English',
-					'nativeName': 'English'
-				}
-			}
-		});
+
 	});
 
 })(jQuery);
