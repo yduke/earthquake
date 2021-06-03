@@ -24,6 +24,6 @@ You can simply download all files and put them on your server to run this page. 
 
 The earthquake data updats every minute. If an M4.5+ earthquake occurs, it will be logged at the top of the table in frontpage.
 
-"Baidu Translate" api for translating place names to Chinese, so if you want to use these codes, remeber to change the baidu translate appid and key in scripts.js to your own, or there will most likely be a down time for your and others.
+"Baidu Translate" api for translating place names to Chinese, so if you want to use these codes, remeber to change the baidu translate appid and key in scripts.js to your own, or there will most likely be a down time after exceeding the API limits.
 
 DEMO: https://www.dukeyin.com/earthquake/
