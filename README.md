@@ -15,14 +15,14 @@
 演示：https://www.dukeyin.com/earthquake/
 
 
-## Earthquakes M4.5+ in 7days
+## M4.5+ Earthquakes in 7days
 This simple html page logs earthquakes exceeding M4.5 world wide within 7 days.
 
 Datas from https://earthquake.usgs.gov/
 
 You can simply download all files and put them on your server to run this page. This project is an HTML and JacaScript web page, so your server only needs web file capabilities.
 
-The earthquake data updats every minute. If an M4.5+ earthquake occurs, it will be logged at the top of the table in frontpage.
+The earthquake data updats every minute. If an M4.5+ earthquake occured, it will be logged at the top of the table in frontpage.
 
 "Baidu Translate" api for translating place names to Chinese, so if you want to use these codes, remeber to change the baidu translate appid and key in scripts.js to your own, or there will most likely be a down time after exceeding the API limits.
 
