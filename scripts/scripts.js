@@ -44,14 +44,16 @@
 			} else if (hh == 0) {
 				h = 12
 			}
-			if (currentLang == 'cn') {
-				time = mm + '月' + dd + ' ' + hh + ':' + min;
-			} else {
 				time = mm + '-' + dd + ' ' + hh + ':' + min;
-			}
 			return time
 		}
 
+
+//
+function rStr(str){
+str=str.replace(/\+/g,"%2B");
+return str;
+}
 //Detect mobile
 		function IsMobile() {
 			var isMobile = {
@@ -74,9 +76,23 @@
 			return isMobile.any();
 		}
 
-
-
 		$(document).ready(function() {
+			addlight();
+			function addlight(){
+(function(root, document) {
+  "use strict";
+  [].forEach.call(document.getElementsByClassName("iframe-lightbox-link"), function(el) {
+    el.lightbox = new IframeLightbox(el, {
+      scrolling: false,
+      /* default: false */
+      rate: 500 /* default: 500 */,
+      touch: true /* default: false - use with care for responsive images in links on vertical mobile screens */
+    });
+  });
+})("undefined" !== typeof window ? window : this, document);
+			}
+			
+			
 //get eq json data	
 			let urla = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson';
 			$.getJSON(urla, callback);
@@ -145,11 +161,12 @@
 							if(tsunami == 1 ){
 								classs += " tsunami"
 							}
-							table += "<tr class='" + classs + "'><td>" + convertTimestamp(json.features[p].properties.time) + "</td><td><div class='multilang' lang='cn'" + hidecn + ">" + obj.trans_result[p].dst + "</div><div class='multilang' lang='en'" + hideen + ">" + json.features[p].properties.place + "</div></td><td>M" + json.features[p].properties.mag + "</td><td>" + json.features[p].geometry.coordinates[2] + "km</td></tr>";
+							table += "<tr class='" + classs + "'><td>" + convertTimestamp(json.features[p].properties.time) + "</td><td><div class='multilang' lang='cn'" + hidecn + "><a class='iframe-lightbox-link' href='./map.html?la="+json.features[p].geometry.coordinates[1]+"&ln="+json.features[p].geometry.coordinates[0]+"&t="+json.features[p].properties.mag+"级 "+convertTimestamp(json.features[p].properties.time)+"&m="+obj.trans_result[p].dst+"' data-padding-bottom='177.7%'>" + obj.trans_result[p].dst + "</a></div><div class='multilang' lang='en'" + hideen + ">" + json.features[p].properties.place + "</div></td><td>M" + json.features[p].properties.mag + "</td><td>" + json.features[p].geometry.coordinates[2] + "km</td></tr>";
 						}
 
 						$('#eqtable').append(table);
-						$(".loading").fadeOut("slow")
+						$(".loading").fadeOut("slow");
+						addlight()
 					}
 				});
 			};
@@ -182,8 +199,11 @@
 				instructionsRefreshing:'正在刷新 Refreshing',
 //				onRefresh: function() {  window.location.reload();}
 			});
+
+		
 		}) //documentReadyEnd
 
 	});
 
 })(jQuery);
+

@@ -11,14 +11,15 @@
 <meta name="theme-color" content="#ffffff" />
 <link rel="icon" href="./img/icon-192.png" sizes="192x192" />
 <link rel="apple-touch-icon" href="./img/icon-180.png" />
+<link rel="stylesheet" href="./lightbox/iframe-lightbox.min.css" />
 <meta name="msapplication-TileImage" content="./img/icon-270.png" />
 <style>
 body,form *,h1 a,h2 a,h3 a,h4 a,h5 a,h6 a,input,textarea{font-family:Segoe UI,SegoeUI,Helvetica Neue,Helvetica,Microsoft YaHei,PingFang SC,sans-serif}
 a,a:active,a:link,a:visited{color:#48608e;text-decoration:none}
 .earthquake{width:800px;margin:0 auto}
 .bold{font-weight:700}
-.alert{color:#e91900}
-.warning{color:#f19400}
+.alert,.alert a{color:#e91900}
+.warning, .warning a{color:#f19400}
 table tr:nth-child(2n){background-color:#8e8e8e1a}
 footer,h1,ul#multilangMenu{text-align:center;padding:0}
 i.loading{position:absolute;background-image:url(img/loading.svg);background-size:40px 40px;background-repeat:no-repeat;width:40px;height:40px;left:calc(50% - 20px)}
@@ -53,13 +54,13 @@ svg.icon {fill:#8c909a}
 </style>
 </head>
 <body>
-<!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script> -->
 <script src="./scripts/jquery.js"></script>
 <script src="./scripts/jquery.cookie.js"></script>
 <script src="./scripts/md5.js" id="json2html"></script>
 <script src="./scripts/scripts.js" id="json2html"></script>
 <script src="./scripts/jquery.multilang.min.js" id="multilang"></script>
 <script src="./scripts/index.umd.min.js" id="pull2refresh"></script>
+<script src="./lightbox/iframe-lightbox.min.js" id="lightbox"></script>
 <div id="multlang">
 <h1 class="multilang" lang="cn">7天内4.5级以上地震</h1>
 <h1 class="multilang" lang="en">M4.5+ Earthquakes in 7days</h1>
@@ -100,8 +101,8 @@ svg.icon {fill:#8c909a}
 </div>
 <footer>
 <br/><small>
-<p class="multilang" lang="en">Made by <a href="https://www.dukeyin.com" target="_blank">Duke Yin</a> | <a href="https://earthquake.usgs.gov" target="_blank">Data Source</a> | <a href="https://github.com/yduke/earthquake" target="_blank">Source Code</a></p>
-<p class="multilang" lang="cn">由<a href="https://www.dukeyin.com">Duke Yin</a>制作 | <a href="https://earthquake.usgs.gov" target="_blank">数据来源</a> | <a href="https://github.com/yduke/earthquake" target="_blank">源代码</a></p></small>
+<p class="multilang" lang="en">Made by <a href="https://www.dukeyin.com" target="_blank">Duke Yin</a> | <a href="https://earthquake.usgs.gov" target="_blank">Data Source</a> | <a href="https://github.com/yduke/earthquake" target="_blank">GitHub</a></p>
+<p class="multilang" lang="cn">由<a href="https://www.dukeyin.com">Duke Yin</a>制作 | <a href="https://earthquake.usgs.gov" target="_blank">数据来源</a> | <a href="https://github.com/yduke/earthquake" target="_blank">GitHub</a></p></small>
 </footer>
 </body>
 </div>

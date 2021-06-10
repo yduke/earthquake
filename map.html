@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>地震位置</title>
+</head>
+<script charset="utf-8"
+    src="https://map.qq.com/api/gljs?v=1.exp&key=KNABZ-TFCA4-PY5UU-XP4VW-546TE-JLBLU"></script>
+<style type="text/css">
+body,html{height:100%;margin:0;padding:0}#container{width:100%;height:100%}
+</style>
+<body onload="initMap()">
+<div id="container"></div>
+<script>
+//get variables from url
+function getQueryVariable(variable){
+	var query = window.location.search.substring(1);
+	var vars = query.split("&");
+	for (var i=0;i<vars.length;i++) {
+	   var pair = vars[i].split("=");
+	   if(pair[0] == variable){return pair[1];}
+	}
+	return(false);
+}
+var message = decodeURI(getQueryVariable("m"));
+var title = decodeURI(getQueryVariable("t"));
+var lat = getQueryVariable("la");
+var lon = getQueryVariable("ln");
+function initMap() {
+	var center = new TMap.LatLng(lat,lon);
+	var map = new TMap.Map("container", {
+		center: center,
+		zoom: 1,
+	});
+	
+	var marker = new TMap.MultiMarker({
+    id: 'marker-layer',
+    map: map,
+    styles: {
+        "marker": new TMap.MarkerStyle({
+            "width": 23,
+            "height": 35,
+            "anchor": { x: 12, y: 32 },
+        })
+    },
+    geometries: [{
+        "id": 'demo1',
+        "styleId": 'marker',
+        "position": new TMap.LatLng(lat,lon),
+        "properties": {
+            "title": 'marker'
+        }
+    }]
+});
+	
+	
+	//set infoWindow
+	var infoWindow = new TMap.InfoWindow({
+		map: map,
+		position: center,
+		content: title +'<br>'+ message,
+		offset: { x: 0, y: -32 }
+	});
+
+}
+</script>
+</body>
+</html>
