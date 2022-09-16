@@ -107,7 +107,7 @@ return str;
 				}
 //				console.log(str);
 				var appid = '20180903000202314';  //CHANGE THIS TO YOUR OWN PLEASE 请将此处修改为您自己的baidu翻译appid
-				var key = 'ema3uNOkIFp2CFGlA6i_'; //CHANGE THIS TO YOUR OWN PLEASE 请将此处修改为您自己的baidu翻译key
+				var key = ''; //CHANGE THIS TO YOUR OWN PLEASE 请将此处修改为您自己的baidu翻译key
 				var salt = (new Date).getTime();
 				var query = str;
 				var from = 'en';
@@ -115,9 +115,9 @@ return str;
 				var str1 = appid + query + salt + key;
 				var sign = MD5(str1);
 				var host = document.domain;
-				if( host != 'localhost' && host != 'dukeyin.com' && host != 'www.dukeyin.com' && appid =='20180903000202314' ){
-					$("footer").append('<p><small style="color:red">请将scripts.js中的<a href="https://api.fanyi.baidu.com/api/trans/product/desktop">百度翻译API</a>密钥替换为您自己的。当API过度请求，就会造成无法使用。修改后本信息会自动消失。<br>Please replace <a href="https://api.fanyi.baidu.com/api/trans/product/desktop">translation API</a> key in scripts.js to your own. When the API is over-requested, this service will not work anymore. This message will be disappear automatically after key changing.</small></p>')
-				}
+				// if( host != 'localhost' && host != 'dukeyin.com' && host != 'www.dukeyin.com' && appid =='20180903000202314' ){
+				// 	$("footer").append('<p><small style="color:red">请将scripts.js中的<a href="https://api.fanyi.baidu.com/api/trans/product/desktop">百度翻译API</a>密钥替换为您自己的。当API过度请求，就会造成无法使用。修改后本信息会自动消失。<br>Please replace <a href="https://api.fanyi.baidu.com/api/trans/product/desktop">translation API</a> key in scripts.js to your own. When the API is over-requested, this service will not work anymore. This message will be disappear automatically after key changing.</small></p>')
+				// }
 				$.ajax({
 					url: 'https://api.fanyi.baidu.com/api/trans/vip/translate',
 					type: 'get',
@@ -132,8 +132,8 @@ return str;
 						sign: sign
 					},
 					success: function(data) {
+						
 						var obj = $.extend(json, data);
-//						console.log(obj);
 						$("#amount_of_earthquake,#amount_of_earthquakes").html(obj.features.length);
 						$("#updates,#updatess").html(convertTimestamp(obj.features[0].properties.updated));
 
@@ -161,7 +161,8 @@ return str;
 							if(tsunami == 1 ){
 								classs += " tsunami"
 							}
-							table += "<tr class='" + classs + "'><td>" + convertTimestamp(json.features[p].properties.time) + "</td><td><div class='multilang' lang='cn'" + hidecn + "><a class='iframe-lightbox-link' href='./map.html?la="+json.features[p].geometry.coordinates[1]+"&ln="+json.features[p].geometry.coordinates[0]+"&t="+json.features[p].properties.mag+"级 "+convertTimestamp(json.features[p].properties.time)+"&m="+obj.trans_result[p].dst+"' data-padding-bottom='177.7%'>" + obj.trans_result[p].dst + "</a></div><div class='multilang' lang='en'" + hideen + ">" + json.features[p].properties.place + "</div></td><td>M" + json.features[p].properties.mag + "</td><td>" + json.features[p].geometry.coordinates[2] + "km</td></tr>";
+							table += "<tr class='" + classs + "'><td>" + convertTimestamp(json.features[p].properties.time) + "</td><td><div class='multilang' lang='cn'" + hidecn + "><a class='iframe-lightbox-link' href='./map.html?la="+json.features[p].geometry.coordinates[1]+"&ln="+json.features[p].geometry.coordinates[0]+"&t="+json.features[p].properties.mag+"级 "+convertTimestamp(json.features[p].properties.time)+"&m="+ json.features[p].properties.place  +"' data-padding-bottom='177.7%'>" + json.features[p].properties.place + "</a></div><div class='multilang' lang='en'" + hideen + ">" + json.features[p].properties.place + "</div></td><td>M" + json.features[p].properties.mag + "</td><td>" + json.features[p].geometry.coordinates[2] + "km</td></tr>";
+							// console.log(obj.trans_result[p].dst );
 						}
 
 						$('#eqtable').append(table);
