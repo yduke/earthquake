@@ -12,7 +12,7 @@
 
 “百度翻译”API用于将地名翻译成中文，所以如果你想使用此项目，记得把scripts.js文件中的百度翻译appid和key改成你自己的，否则很可能导致宕机。
 
-演示：https://www.dukeyin.com/earthquake/
+演示：[https://dukeyin.com/tools_old/earthquake/](https://dukeyin.com/tools_old/earthquake/)
 
 
 ## M4.5+ Earthquakes in 7days
@@ -26,4 +26,4 @@ The earthquake data updats every minute. If an M4.5+ earthquake occured, it will
 
 "Baidu Translate" api for translating place names to Chinese, so if you want to use these codes, remeber to change the baidu translate appid and key in scripts.js to your own, or there will most likely be a down time after exceeding the API limits.
 
-DEMO: https://www.dukeyin.com/earthquake/
+DEMO: [https://dukeyin.com/tools_old/earthquake/](https://dukeyin.com/tools_old/earthquake/)
